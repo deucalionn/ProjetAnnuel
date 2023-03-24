@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+#left-home-side{
+    background-color: white;
+    min-height: 100vh;
+}
+
+#right-home-side{
+    background-color: white;
+    min-height: 100vh;
+}
+
+
+.btn-custom{
+    background-color: #32E9C8;
+}
+
+
+h1{
+    font-family: Bebas Neue;
+    color: black;
+}
+
+
+body {
+    overflow-x: hidden;
+}
