@@ -25,3 +25,20 @@ h1{
 body {
     overflow-x: hidden;
 }
+
+.posed{
+    background-color: black;
+    width: 300px;
+    height: 200px;
+}
+
+.captcha{
+    width: 100px;
+    height: 100px;
+}
+
+.not-posed{
+    width: 300px;
+    height: 200px;
+    background-color: black;
+}

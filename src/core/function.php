@@ -1,5 +1,5 @@
 <?php
-require "../conf.inc.php";
+require_once("C:\wamp64\www\ProjetAnnuel\src\conf.inc.php");
 
 function cleanEmail($email){
 	return strtolower(trim($email));
@@ -22,9 +22,9 @@ function connectDB(){
 #verifier si l'email est déjà en base de donnée
 function verifIfEmailExist($email){
 	$connection = connectDB();
-	$queryPrepared = $connection->prepare("SELECT email FROM ".DB_PREFIX."users WHERE email=:email");
+	$queryPrepared = $connection->prepare("SELECT mail FROM ".DB_PREFIX."utilisateur WHERE mail=:mail");
 	$queryPrepared->execute([
-		"email"=>$email
+		"mail"=>$email
 	]);
 	$result = $queryPrepared->fetch();
 	if (!empty($result)){
@@ -33,7 +33,7 @@ function verifIfEmailExist($email){
 	return 0;
 }
 
-function verifPasswordSyntaxe($pwd){}
+function verifPasswordSyntaxe($pwd){
 	if( strlen($pwd)<8 || 
 		!preg_match("#[a-z]#", $pwd)  || 
 		!preg_match("#[A-Z]#", $pwd)  || 
@@ -43,4 +43,5 @@ function verifPasswordSyntaxe($pwd){}
 			return 1;
 	}
 	return 0;
+}
 ?>
