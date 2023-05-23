@@ -9,6 +9,15 @@ $altArray = $data;
 $connection = connectDB();
 
 
+function send_email_with_generate_code($code){
+    $to = $_SESSION['info']['email'];
+    $subject = "Code de vérification";
+    $message = "Votre code de vérification est : ".$code;
+    $headers = "From: Meetravel@gmail.com";
+    mail($to, $subject, $message, $headers);
+}
+
+
 
 if (empty($_SESSION['info']["lastname"])
 || empty($_SESSION['info']["firstname"])
@@ -51,11 +60,14 @@ if (empty($_SESSION['info']["lastname"])
                                                                 "anniversaire"=>$birthday,
                                                                 "ville"=>$city
                                                             ]);
-                                    $errorInfo = $queryPrepared->errorInfo();
-                                    echo "Erreur SQL : " . $errorInfo[2];
+                                    //$errorInfo = $queryPrepared->errorInfo();
+                                    //echo "Erreur SQL : " . $errorInfo[2];
+                                    // generate random number
+                                    $_SESSION['code'] = rand(100000, 999999);
+                                    send_email_with_generate_code($_SESSION['code']);
                                     http_response_code(200);
-                                    echo json_encode(["status" =>"ok", "msg" => "Le captcha est correcte"]);
-                            
+                                    echo json_encode(["status" =>"ok", "msg" => "Le captcha est correcte", "code" => $_SESSION['code']]);
+
                                     exit();
                                 }
                             }

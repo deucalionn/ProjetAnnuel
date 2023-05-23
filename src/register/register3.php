@@ -112,16 +112,21 @@ posedDiv.addEventListener("DOMNodeInserted", function(event) {
     body: jsonAltArray
     })
     .then(response => {
-    if (!response.ok) {
-        throw new Error("Erreur lors de l'envoi des données au serveur");
-    }
-    return response.json();
-    })
+        console.log(response);
+        if (response.status == 200){
+            window.location.href = "http://localhost/ProjetAnnuel/src/register/final.php";
+        }
+        if (!response.ok) {
+            throw new Error("Erreur lors de l'envoi des données au serveur");
+        }
+
+        return response.json();
+        })
     .then(data => {
-    console.log(data); // Affiche la réponse du serveur si besoin
+        console.log(data); // Affiche la réponse du serveur si besoin
     })
     .catch(error => {
-    console.error(error);
+        console.error(error);
     });
 
   }
