@@ -1,5 +1,5 @@
 <?php
-require_once("C:\wamp64\www\ProjetAnnuel\src\conf.inc.php");
+require_once("../conf.inc.php");
 
 function cleanEmail($email){
 	return strtolower(trim($email));

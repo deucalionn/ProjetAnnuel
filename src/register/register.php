@@ -1,6 +1,6 @@
+<?php  session_start(); ?>
 <?php include "../template/header_register.php" ?>
 <?php include "../core/function.php" ?>
-<?php  session_start(); ?>
 
 <?php
 if(!empty($_SESSION['errors'])){

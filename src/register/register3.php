@@ -46,39 +46,40 @@ function drop(e){
 
 
 
+<div id="container">
+    <div class="row" id="captcha">
+        <div class="col-6" id="left-home-side">
+            <div class="d-flex align-items-center h-100 justify-content-end">
+                <div class="row not-posed" ondragstart="start(event)" ondragover="return over(event)" ondrop="return drop(event)">
+                    <?php
+                    // Chemin vers le dossier contenant les photos
+                    $dir = '../img/captcha';
 
-<div class="row">
-    <div class="col-6" id="left-home-side">
-        <div class="d-flex align-items-center h-100 justify-content-end">
-            <div class="row not-posed" ondragstart="start(event)" ondragover="return over(event)" ondrop="return drop(event)">
-                <?php
-                // Chemin vers le dossier contenant les photos
-                $dir = '../img/captcha';
+                    // Liste des fichiers dans le dossier
+                    $files = scandir($dir);
 
-                // Liste des fichiers dans le dossier
-                $files = scandir($dir);
+                    // Supprime les fichiers . et ..
+                    unset($files[0], $files[1]);
 
-                // Supprime les fichiers . et ..
-                unset($files[0], $files[1]);
+                    // Mélange la liste des fichiers
+                    shuffle($files);
+                    // Initialise un compteur pour les images
+                    $i = 0;
 
-                // Mélange la liste des fichiers
-                shuffle($files);
-                // Initialise un compteur pour les images
-                $i = 0;
-
-                // Boucle sur les images
-                foreach ($files as $file) {
-                    echo '<img class="captcha" id="'.$i.'" src="' . $dir . '/' . $file . '" alt="' . $file . '" draggable="true">';
-                    $i++;
-                }
-                ?>
+                    // Boucle sur les images
+                    foreach ($files as $file) {
+                        echo '<img class="captcha" id="'.$i.'" src="' . $dir . '/' . $file . '" alt="' . $file . '" draggable="true">';
+                        $i++;
+                    }
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-6" id="right-home-side">
-        <div class="d-flex align-items-center h-100">
-            <div class="col-md-7">
-                <div class="row posed" ondragstart="start(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="col-6" id="right-home-side">
+            <div class="d-flex align-items-center h-100">
+                <div class="col-md-7">
+                    <div class="row posed" ondragstart="start(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -112,16 +113,39 @@ posedDiv.addEventListener("DOMNodeInserted", function(event) {
     body: jsonAltArray
     })
     .then(response => {
-    if (!response.ok) {
-        throw new Error("Erreur lors de l'envoi des données au serveur");
-    }
-    return response.json();
-    })
+        console.log(response);
+        if (response.status == 200){
+            var element = document.getElementById("captcha");
+            element.style.display = "none";
+            var div = document.createElement("div");
+            // Définir le code HTML à afficher
+            var htmlCode = '<form method="POST">' +
+            '<div class="row mb-4">' +
+            '<div class="col-md-4">' +
+            '<input class="form-control" class="form-control" type="text" name="codeInput" id="code" placeholder="Code" required="required">' +
+            '</div>' +
+            '</div>' +
+            '<button type="submit" name="valider" value="valider" class="btn btn-primary mb-4">Valider</button>' +
+            '</form>';
+
+            // Définir le contenu HTML de l'élément div
+            div.innerHTML = htmlCode;
+            var container = document.getElementById("container");
+            // Ajouter l'élément div avec le code HTML à l'élément container
+            container.appendChild(div);
+
+        }
+        if (!response.ok) {
+            throw new Error("Erreur lors de l'envoi des données au serveur");
+        }
+
+        return response.json();
+        })
     .then(data => {
-    console.log(data); // Affiche la réponse du serveur si besoin
+        console.log(data); // Affiche la réponse du serveur si besoin
     })
     .catch(error => {
-    console.error(error);
+        console.error(error);
     });
 
   }

@@ -1,13 +1,11 @@
-<?php include "../template/header_register.php" ?>
 <?php  session_start()?>
+<?php include "../template/header_register.php" ?>
 <?php
 
 
 if (empty($_SESSION['info']["lastname"])
 || empty($_SESSION['info']["firstname"])
 || empty($_SESSION['info']["email"])
-|| empty($_SESSION['info']["password"])
-|| empty($_SESSION['info']["password-confirm"])
 || empty($_SESSION['info']["gender"])
 || empty($_SESSION['info']['dateNaissance'])
 || empty($_SESSION['info']['ville'])

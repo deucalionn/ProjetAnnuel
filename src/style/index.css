@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 #left-home-side{
     background-color: white;
@@ -12,9 +12,16 @@
 
 
 .btn-custom{
-    background-color: #32E9C8;
+    background-color: #A6C635;
+    color: white;
+    font-family: Bebas Neue;
+    width: 100%;
 }
 
+
+.input-login{
+    width: 100%;
+}
 
 h1{
     font-family: Bebas Neue;

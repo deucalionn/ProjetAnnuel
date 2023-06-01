@@ -1,32 +1,52 @@
-<?php include "template/header.php" ?>
+<?php
+include "template/header.php";
 
-<div class="row">
-    <div class="col-6" id="left-home-side">
-        <div class="d-flex align-items-center h-100 justify-content-end">
-            <div class="row">
-                <img src="img/iphone_white.jpg" class="w-250 h-auto">
-            </div>
+
+if(empty($_SESSION['login'])){
+    header('Location: login/login.php');
+
+}
+
+?>
+<div class="row p-4 content-fluid grid gap-3">
+    
+    <div class="col-3 p-3 bg-dark-subtle bg-opacity-10 border border-dark-subtle rounded"">
+        <div class="d-flex justify-content-center">
+            Evenement
         </div>
     </div>
-    <div class="col-6" id="right-home-side">
-        <div class="d-flex align-items-center h-100">
-            <div class="row">
-                <div class="col-md-12 text-center mb-4">
-                    <h1><b>MEETRAVEL</b></h1>
+    
+    <div class="col-5 p-3 bg-dark-subtle bg-opacity-10 border border-dark-subtle rounded">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                Proche de moi
                 </div>
-            <div class="col-md-6 offset-md-3">
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="username" placeholder="Nom d'utilisateur">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="password" placeholder="Mot de passe">
-                    </div>
-                    <button type="submit" class="btn btn-custom btn-block">Se connecter</button>
-
-                    <p class="mt-2">Vous n'avez pas de compte ? <a href="">Inscrivez vous.</a></p>
-                </form>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                Mes Amis
+                </div>
             </div>
         </div>
     </div>
+
+
+    <div class="col-3 p-3 bg-dark-subtle bg-opacity-10 border border-dark-subtle rounded">
+        <div class="d-flex justify-content-center">
+            Messagerie
+        </div>
+    </div>
+
 </div>
+
+<div class="row p-4 container-fluid gap-1">
+   
+        <div class="col-3 p-3 bg-dark-subtle bg-opacity-10 border border-dark-subtle rounded">
+            <div class="d-flex justify-content-center">
+                Annonce
+            </div>
+        </div>
+</div>
+
+
