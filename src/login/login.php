@@ -1,7 +1,7 @@
 <?php 
-include "../template/header.php";
-include "../core/function.php";
-session_start(); ?>
+session_start(); 
+include "../template/header_register.php";
+include "../core/function.php";?>
 
 
 <?php
@@ -21,7 +21,6 @@ session_start(); ?>
     <?php
     unset($_SESSION['error']);
     }
-
 
     if(!empty($_POST["email"]) &&  !empty($_POST["password"])) {
 
@@ -49,9 +48,6 @@ session_start(); ?>
 
 
 
-
-
-
 ?>
 
 <div class="row">
@@ -72,11 +68,11 @@ session_start(); ?>
             <form method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control input-login" id="email">
+                        <input type="email" name="email" class="form-control input-login" id="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control input-login" id="password">
+                        <input type="password" name="password" class="form-control input-login" id="password">
                     </div>
                     <button type="submit" class="btn btn-custom">Se connnecter</button>
                     <p class="mt-2">Vous n'avez pas de compte ? <a href="http://localhost/ProjetAnnuel/src/register/register.php">Inscrivez vous.</a></p>

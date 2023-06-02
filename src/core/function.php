@@ -44,4 +44,16 @@ function verifPasswordSyntaxe($pwd){
 	}
 	return 0;
 }
+
+function createPublication(){
+	$connection = connectDB();
+	$queryPrepared = $connection->prepare("INSERT INTO ".DB_PREFIX."publication (titre, image, description, date, id_utilisateur) VALUES (:titre, :image, :description, :date, :id_utilisateur)");
+	$queryPrepared->execute([
+		"titre"=>$_POST["titre"],
+		"image"=>$_POST["image"],
+		"description"=>$_POST["description"],
+		"date"=>date("Y-m-d"),
+		"id_utilisateur"=>$_SESSION["id"]
+	]);
+}
 ?>
