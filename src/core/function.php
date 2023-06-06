@@ -1,5 +1,11 @@
 <?php
-require_once("../conf.inc.php");
+if (file_exists(__DIR__ . '/conf.inc.php')) {
+    require_once(__DIR__ . '/conf.inc.php');
+} elseif (file_exists(__DIR__ . '/../conf.inc.php')) {
+    require_once(__DIR__ . '/../conf.inc.php');
+} else {
+    die('Aucun fichier de configuration trouvé');
+}
 
 function cleanEmail($email){
 	return strtolower(trim($email));
@@ -44,4 +50,5 @@ function verifPasswordSyntaxe($pwd){
 	}
 	return 0;
 }
+
 ?>

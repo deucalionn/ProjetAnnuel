@@ -20,8 +20,25 @@ header('Location: register.php');
 exit();
 }
 
-
 ?>
+
+<?php
+			if(isset($_POST['valider'])){
+				if ($_POST['codeInput'] == $_SESSION['code'])
+				{
+					#compte activé
+					$connection = connectDB();
+					$sql = "UPDATE utilisateur SET statut = 1 WHERE mail = :mail";
+					$email = $_SESSION['info']['email'];
+					$queryPrepared = $connection->prepare($sql);
+					$queryPrepared->execute([
+						":mail" => $email
+					]);
+                    header("Location: ../login/login.php");
+				}
+
+			}
+				?>
 
 
 <script>
