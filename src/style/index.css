@@ -49,3 +49,40 @@ body {
     height: 200px;
     background-color: black;
 }
+
+
+#pdp{
+    width: 100px;
+    height: 100px;
+    border-radius: 0%;
+}
+
+
+.publication-image{
+    width: 300px;
+    height: 200px;
+}
+/* css pour classer la description la ou l'image commence*/
+.publication-description{
+margin-left: 15%;
+}
+
+.publication-title{
+    margin-left: 15%;
+}
+
+
+.biographie{
+    width: 350px;
+    height: 150px;
+}
+
+.username {
+    width: 350px;
+
+}
+
+.btn-custom-2{
+    background-color: #A6C635;
+    
+}

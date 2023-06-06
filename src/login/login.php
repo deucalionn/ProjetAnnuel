@@ -5,7 +5,7 @@ include "../core/function.php";?>
 
 
 <?php
-    if(!empty($_SESSION['error'])){
+    if(isset($_SESSION['error'])){
         ?>
         
         <div class="row">
@@ -36,6 +36,15 @@ include "../core/function.php";?>
             $_SESSION['error'] = ["Indentifiants incorrects"];
             header("Location: login.php");
         }else if(password_verify($pwd, $result["pwd"])){
+            # on verifie si le statut de l'utilisateur est 1
+            $queryPrepared = $connect->prepare("SELECT statut FROM utilisateur WHERE mail=:mail");
+            $queryPrepared->execute(["mail"=>$email]);
+            $result = $queryPrepared->fetch();
+            if($result["statut"] == -1){
+                $_SESSION['error'] = ["Votre compte n'est pas encore validé"];
+                header("Location: login.php");
+                exit();
+            }
             $_SESSION['email'] =$email;
             $_SESSION['login'] =1;
             header("Location: ../index.php");

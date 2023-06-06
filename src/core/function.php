@@ -1,5 +1,11 @@
 <?php
-require_once("../conf.inc.php");
+if (file_exists(__DIR__ . '/conf.inc.php')) {
+    require_once(__DIR__ . '/conf.inc.php');
+} elseif (file_exists(__DIR__ . '/../conf.inc.php')) {
+    require_once(__DIR__ . '/../conf.inc.php');
+} else {
+    die('Aucun fichier de configuration trouvé');
+}
 
 function cleanEmail($email){
 	return strtolower(trim($email));
@@ -45,15 +51,4 @@ function verifPasswordSyntaxe($pwd){
 	return 0;
 }
 
-function createPublication(){
-	$connection = connectDB();
-	$queryPrepared = $connection->prepare("INSERT INTO ".DB_PREFIX."publication (titre, image, description, date, id_utilisateur) VALUES (:titre, :image, :description, :date, :id_utilisateur)");
-	$queryPrepared->execute([
-		"titre"=>$_POST["titre"],
-		"image"=>$_POST["image"],
-		"description"=>$_POST["description"],
-		"date"=>date("Y-m-d"),
-		"id_utilisateur"=>$_SESSION["id"]
-	]);
-}
 ?>

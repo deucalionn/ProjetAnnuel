@@ -16,9 +16,7 @@
             <div class="row p-4 container-fluid d-flex align-items-center">
 
                 <div class="col-2 d-flex p-2 justify-content-center">
-                    <a class="navbar-brand" href="#">
-                        <img src="/ProjetAnnuel/src/img/logoblack.png" alt="MEETRAVEL" width="100" height="100">
-                    </a>
+                    <img src="/ProjetAnnuel/src/img/logoblack.png" alt="MEETRAVEL" width="100" height="100">
                 </div>
 
                 <div class="col-8 p-2 justify-content-center">
@@ -36,12 +34,15 @@
                     <div class=" grid gap-3 offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
 
                         <ul class="nav nav-pills nav-fill flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://localhost/ProjetAnnuel/src/index.php">Flux</a>
+                            </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="profil.php"> Voir le profil</a>
+                                <a class="nav-link" href="http://localhost/ProjetAnnuel/src/profil/profil.php"> Voir le profil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Paramètre</a>
+                                <a class="nav-link" href="http://localhost/ProjetAnnuel/src/parametre/parametre.php">Paramètre</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Déconnexion</a>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "template/header.php";
+include "core/function.php";
 
 if(empty($_SESSION['login'])){
     header('Location: login/login.php');
@@ -8,6 +9,56 @@ if(empty($_SESSION['login'])){
 }
 
 
+if (isset($_SESSION['action'])) {
+    foreach ($_SESSION['action'] as $action) {
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        ".$action."
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+    }
+    unset($_SESSION['action']);
+}
+
+function createPublication($title, $image, $description){
+	$connection = connectDB();
+	$queryPrepared = $connection->prepare("SELECT idUtilisateur FROM ".DB_PREFIX."utilisateur WHERE mail=:mail");
+	$queryPrepared->execute([
+		"mail"=>$_SESSION["email"]
+	]);
+	$result = $queryPrepared->fetch();
+	$id_utilisateur = $result["idUtilisateur"];
+	$queryPrepared = $connection->prepare("INSERT INTO ".DB_PREFIX."publication (title, image, description, idUtilisateur) VALUES (:title, :image, :description, :idUtilisateur)");
+	$queryPrepared->execute([
+		"title"=>$title,
+		"image"=>$image,
+		"description"=>$description,
+		"idUtilisateur"=>$id_utilisateur
+	]);
+    $_SESSION['action'] = ["Publication créée"];
+    header('Location: index.php');
+    exit();
+}
+
+
+
+
+if (isset($_POST['publie'])) {
+    $uploadDir = 'img/'; // Spécifiez le répertoire de destination
+    $fileName = $_FILES['image']['name'];
+    $filePath = $uploadDir . $fileName;
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $filePath)) {
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $image = $_FILES['image']['name'];
+        createPublication($title, $image, $description);
+    }
+    else{
+        $_SESSION['action'] = ["Erreur lors de l'upload de l'image"];
+        header('Location: index.php');
+    }
+
+}
 
 
 
@@ -43,20 +94,20 @@ if(empty($_SESSION['login'])){
             <div class="overlay-content">
                 <!-- Ajoutez ici le contenu de l'overlay -->
                 <div class="col-md-6 offset-md-3">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                             <div class="mb-2">
                                 <label for="title" class="form-label">Titre</label>
                                 <input type="text" name="title" class="form-control input-login" id="title">
                             </div>
                             <div class="mb-3">
-                                <label for="text" class="form-label">Description</label>
+                                <label for="description" class="form-label">Description</label>
                                 <input type="text" name="description" class="form-control input-login" id="description">
                             </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label">Image</label>
                                 <input type="file" name="image" class="form-control input-login" id="image">
                             </div>
-                            <button type="submit" value="publie" class="btn btn-custom">Publier</button>
+                            <button type="submit" name="publie" value="publie" class="btn btn-custom">Publier</button>
                     </form>
                 </div>
             </div>
