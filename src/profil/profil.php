@@ -32,9 +32,9 @@ if (isset($_POST['edit-profil'])) {
     if($fileName != ""){
             if (move_uploaded_file($_FILES['image']['tmp_name'], $filePath)){
             $connection = connectDB();
-            $sql = "UPDATE utilisateur SET pseudo = :pseudo, biographie = :biographie, pdp = :pdp WHERE mail = :mail";
+            $sql = "UPDATE utilisateur SET pseudo = :pseudo, biographie = :biographie, pdp = :pdp, ville = :ville WHERE mail = :mail";
             $stmt = $connection->prepare($sql);
-            $stmt->execute(['pseudo' => $_POST['pseudo'], 'biographie' => $_POST['biographie'], 'pdp' => $_FILES['image']['name'], 'mail' => $_SESSION['email']]);
+            $stmt->execute(['pseudo' => $_POST['pseudo'], 'biographie' => $_POST['biographie'], 'pdp' => $_FILES['image']['name'], 'ville'=> $_POST['ville'], 'mail' => $_SESSION['email']]);
             header('Location: profil.php');
             $_SESSION['action'] = ["Profil modifié"];
             header('Location: profil.php');
@@ -48,9 +48,9 @@ if (isset($_POST['edit-profil'])) {
     }
     else {
         $connection = connectDB();
-        $sql = "UPDATE utilisateur SET pseudo = :pseudo, biographie = :biographie WHERE mail = :mail";
+        $sql = "UPDATE utilisateur SET pseudo = :pseudo, biographie = :biographie, ville = :ville WHERE mail = :mail";
         $stmt = $connection->prepare($sql);
-        $stmt->execute(['pseudo' => $_POST['pseudo'], 'biographie' => $_POST['biographie'], 'mail' => $_SESSION['email']]);
+        $stmt->execute(['pseudo' => $_POST['pseudo'], 'biographie' => $_POST['biographie'], 'ville' => $_POST['ville'], 'mail' => $_SESSION['email']]);
         header('Location: profil.php');
         $_SESSION['action'] = ["Profil modifié"];
         header('Location: profil.php');
@@ -90,13 +90,14 @@ $result = $stmt->fetchAll();
 <!-- Affichage des informations de l'utilisateur -->
 <?php 
 // on affiche la photo de profil, le pseudo et la biographie de l'utilisateur connecté
-$sql = "SELECT pdp, pseudo, biographie FROM utilisateur WHERE mail = :mail";
+$sql = "SELECT pdp, pseudo, biographie, ville FROM utilisateur WHERE mail = :mail";
 $stmt = $connection->prepare($sql);
 $stmt->execute(['mail' => $_SESSION['email']]);
 $result_info = $stmt->fetch();
 $pdp = $result_info['pdp'];
 $pseudo = $result_info['pseudo'];
 $biographie = $result_info['biographie'];
+$ville = $result_info['ville'];
 
 
 // on affiche les informations avec possiblité de les modifier
@@ -116,6 +117,12 @@ $biographie = $result_info['biographie'];
             <div class="input-group mb-3 username">
                 <span class="input-group-text" id="basic-addon1">Pseudo</span>
                 <input type="text" name="pseudo" class="form-control" placeholder="Pseudo" value="<?php echo $pseudo ?>">
+            </div>
+        </div>
+        <div class="row-12 d-flex justify-content-center">
+            <div class="input-group mb-3 username">
+                <span class="input-group-text" id="basic-addon1">Ville</span>
+                <input type="text" name="ville" class="form-control" placeholder="Ville" value="<?php echo $ville ?>">
             </div>
         </div>
         <div class="row-12 mb-3 d-flex justify-content-center">
