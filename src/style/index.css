@@ -86,3 +86,62 @@ margin-left: 15%;
     background-color: #A6C635;
     
 }
+
+.publication-image-flux{
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+}
+
+.publication-description-flux{
+    margin-left: 10%;
+}
+
+.publication-title-flux{
+    margin-left: 10%;
+}
+
+.publication-owner-image-flux{
+    width: 50px;
+    height: 50px;
+}
+
+
+.publication-like-icon{
+    width: 40px;
+    height: 40px;
+}
+
+
+.publication-like-text{
+    font-family: Bebas Neue;
+    font-size: 20px;
+    margin-top: 2.5%;
+}
+
+
+.info-profil{
+    font-size: 20px;
+    height: 50%;
+    background-color:  ghostwhite;
+    padding-left: 25%;
+}
+
+.pseudo{
+    font-family: Bebas Neue;
+    font-size: 30px;
+    margin-top: 2.5%;
+    color: black;
+}
+
+.title-publication-on-profil{
+    font-family: Bebas Neue;
+    margin-top: 2.5%;
+    color: black;
+}
+
+.localisation-text{
+    font-style: italic;
+}
+
+
