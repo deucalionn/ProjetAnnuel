@@ -1,9 +1,10 @@
 <?php
-include "../core/function.php";
-include "../template/header.php";
 
 
 session_start();
+include "../core/function.php";
+include "../template/header.php";
+
 //d'abord on s'assure que la variable session login est a 1
 if(empty($_SESSION['login'])){
     header('Location: ../login/login.php');
@@ -153,8 +154,10 @@ foreach ($result as $row) {
         </div>
         <div class="row-12 d-flex justify-content-center">
             <div class="m-3">
-                <img class="publication-image" src="../img/<?php echo $row['image'] ?>" alt="photo de profil">
-            </div>
+                <a href="<?php echo "http://".HOST."/ProjetAnnuel/src/publication/publication?id=".$row['idPublication'] ?>">
+                    <img class="publication-image" src="../img/<?php echo $row['image'] ?>" alt="publication">
+                </a>
+                </div>
         </div>
         <div class="row-12">
             <div class="m-3">

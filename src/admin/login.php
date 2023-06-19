@@ -1,13 +1,13 @@
 <?php 
-include "../template/header.php";
-include "../core/function.php";
-session_start(); ?>
+session_start(); 
+include "../template/header_register.php";
+include "../core/function.php";?>
 
 
 <?php
-    if(!empty($_SESSION['error'])){
+    if(isset($_SESSION['error'])){
         ?>
-        <div class="container">
+        
         <div class="row">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php 
@@ -15,16 +15,12 @@ session_start(); ?>
                         echo "<li>".$error."</li>";
                     }
                 ?>
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            
-        </div>
         </div>
 
     <?php
     unset($_SESSION['error']);
     }
-
 
     if(!empty($_POST["email"]) &&  !empty($_POST["password"])) {
 
@@ -41,7 +37,7 @@ session_start(); ?>
             header("Location: login.php");
         }else if(password_verify($pwd, $result["pwd"])){
             $_SESSION['email'] =$email;
-            $_SESSION['admin_login'] =1;
+            $_SESSION['login'] =1;
             header("Location: index.php");
         }else{
             $_SESSION['error'] = ["Indentifiants incorrects"];
@@ -49,9 +45,6 @@ session_start(); ?>
         }
 
     }
-
-
-
 
 
 
@@ -69,19 +62,20 @@ session_start(); ?>
         <div class="d-flex align-items-center h-100">
             <div class="row">
                 <div class="col-md-12 text-center mb-4">
-                    <h1><b>ADMIN login</b></h1>
+                    <h1><b>MEETRAVEL ADMIN PANEL</b></h1>
                 </div>
             <div class="col-md-6 offset-md-3">
-                <form method="POST">
+            <form method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control input-login" id="email">
+                        <input type="email" name="email" class="form-control input-login" id="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control input-login" id="password">
+                        <input type="password" name="password" class="form-control input-login" id="password">
                     </div>
-                    <button type="submit" class="btn btn-custom">Submit</button>
+                    <button type="submit" class="btn btn-custom">Se connnecter</button>
+                    <p class="mt-2">Vous n'avez pas de compte ? <a href="http://localhost/ProjetAnnuel/src/register/register.php">Inscrivez vous.</a></p>
                 </form>
             </div>
         </div>

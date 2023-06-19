@@ -151,44 +151,45 @@ if (isset($_POST['publie'])) {
 
             ?>
             <div class="col-12 mt-3 bg-dark-subtle bg-opacity-10 border border-dark-subtle rounded">
-                <div class="mt-3 d-flex align-items-center" style="margin-left: 10%;">
-                    <div class="flex-shrink-0">
-                        <img class="publication-owner-image-flux "src="img/<?php echo $pdp?>" alt="photo de profil">
+                    <div class="mt-3 d-flex align-items-center" style="margin-left: 10%;">
+                        <div class="flex-shrink-0">
+                            <img class="publication-owner-image-flux "src="img/<?php echo $pdp?>" alt="photo de profil">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <p><a href="<?php echo "profil/profilOf.php?id=".$row['idUtilisateur']?>"><?php echo $pseudo?></a></p>
+                        </div>
                     </div>
-                    <div class="flex-grow-1 ms-3">
-                        <p><a href="<?php echo "profil/profilOf.php?id=".$row['idUtilisateur']?>"><?php echo $pseudo?></a></p>
+                    <div class="row-12">
+                        <div class="m-3">
+                            <h3 class="publication-title-flux"><?php echo $row['title'] ?></h1>
+                        </div>
                     </div>
-                </div>
-                <div class="row-12">
-                    <div class="m-3">
-                        <h3 class="publication-title-flux"><?php echo $row['title'] ?></h1>
+                    <div class="row-12 d-flex justify-content-center">
+                        <div class="mt-2">
+                            <a href="<?php echo "http://".HOST."/ProjetAnnuel/src/publication/publication?id=".$row['idPublication'] ?>">
+                                <img class="publication-image-flux" src="img/<?php echo $row['image'] ?>" alt="photo">
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="row-12 d-flex justify-content-center">
-                    <div class="mt-2">
-                        <img class="publication-image-flux" src="img/<?php echo $row['image'] ?>" alt="photo">
+                    <div class="mt-3 d-flex align-items-center" style="margin-left: 10%;">
+                        <div class="flex-shrink-0">
+                            <img class="publication-like-icon" src="img/like_button.png" alt="like" onclick="<?php echo "like(".$row['idPublication'].",".$row['idUtilisateur'].")"?>">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <p class="publication-like-text" id="<?php echo "like".$row['idPublication'] ?>"><?php echo $result3 ?> </p>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-3 d-flex align-items-center" style="margin-left: 10%;">
-                    <div class="flex-shrink-0">
-                        <img class="publication-like-icon" src="img/like_button.png" alt="like" onclick="<?php echo "like(".$row['idPublication'].",".$row['idUtilisateur'].")"?>">
+                    <div class="row-12">
+                        <div class="m-3">
+                            <p class="publication-description-flux"><?php echo $row['description'] ?></p>
+                        </div>
                     </div>
-                    <div class="flex-grow-1 ms-3">
-                        <p class="publication-like-text" id="<?php echo "like".$row['idPublication'] ?>"><?php echo $result3 ?> </p>
+                    <div class="row-12 d-flex justify-content-center">
+                        <div class="m-3">
+                            <p class="publication-date-flux"><?php echo explode(" ", $row['date_contenu'])[0] ?></h2>
+                        </div>
                     </div>
-                </div>
-                <div class="row-12">
-                    <div class="m-3">
-                        <p class="publication-description-flux"><?php echo $row['description'] ?></p>
-                    </div>
-                </div>
-                <div class="row-12 d-flex justify-content-center">
-                    <div class="m-3">
-                        <p class="publication-date-flux"><?php echo explode(" ", $row['date_contenu'])[0] ?></h2>
-                    </div>
-                </div>
             </div>
-
         <?php }?>
 </div>
 

@@ -19,6 +19,7 @@ if (file_exists(__DIR__ . '/conf.inc.php')) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <link href="/ProjetAnnuel/src/style/index.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="/ProjetAnnuel/src/core/js/like.js"></script>
     </head>
 
     <body>
@@ -47,12 +48,14 @@ if (file_exists(__DIR__ . '/conf.inc.php')) {
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo "http://".HOST."/ProjetAnnuel/src/index.php" ?>">Flux</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo "http://".HOST."/ProjetAnnuel/src/profil/profil.php" ?>"> Voir le profil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo "http://".HOST."/ProjetAnnuel/src/parametre/parametre.php" ?>">Paramètre</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo "http://".HOST."/ProjetAnnuel/src/avatar/avatar/avatar.php"?>">Avatar</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Déconnexion</a>
